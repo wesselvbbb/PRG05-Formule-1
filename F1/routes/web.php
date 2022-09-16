@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HelloController::class, 'show']);
+Route::get('/', [HelloController::class, 'show'])->name('home');
