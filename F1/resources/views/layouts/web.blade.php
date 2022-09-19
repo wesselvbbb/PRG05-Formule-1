@@ -11,6 +11,10 @@
 </head>
 <body>
 @include('partials._nav')
+@include('partials._header')
 @yield('content')
 </body>
+<footer>
+    @include('partials._footer')
+</footer>
 </html>
