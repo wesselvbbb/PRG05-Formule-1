@@ -3,6 +3,7 @@ body{
 }
 
 .jumbotron{
-    background-color: lightslategray;
+    background-color: lightgray;
     padding: 10px;
+    height: 20vh;
 }
