@@ -20,4 +20,4 @@ Route::get('about', [AboutController::class, 'show'])->name('about');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
