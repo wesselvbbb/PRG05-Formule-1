@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class AboutController extends Controller
 {
     public function Show(){
+
         $title = 'About';
         $text = 'tekst';
 
