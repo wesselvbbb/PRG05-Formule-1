@@ -15,7 +15,5 @@
 @include('partials._header')
 @yield('content')
 </body>
-<footer>
     @include('layouts.footer')
-</footer>
 </html>
