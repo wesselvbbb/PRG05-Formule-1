@@ -17,8 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('about', [AboutController::class, 'show'])->name('about');
+Route::get('about', [AboutController::class, 'show'])->name('about')->middleware('admin');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Route::get('about', [AboutController::class, 'show'])->middleware('admin');
