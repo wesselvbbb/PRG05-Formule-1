@@ -1,13 +1,13 @@
 body{
-    background-color: white;
 }
 
 .jumbotron{
-    background-color: lightgray;
-    padding: 10px;
+    background-color: lightgrey;
+    padding: 40px;
     height: 20vh;
+    margin-bottom: 20px;
 }
 
-.card {
-    display:inline-block;
+main{
+    padding: 40px;
 }
