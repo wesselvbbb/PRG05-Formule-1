@@ -17,7 +17,7 @@
                 <input type="file" name="file" id="file" value="{{$post->file_path}}" class="form-control"></br>
                 <input type="submit" value="Update" class="btn btn-success"></br>
             </form>
-
+            <a href="{{url('/post')}}">Back</a>
         </div>
     </div>
 

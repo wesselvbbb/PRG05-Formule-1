@@ -2,18 +2,22 @@
 
     namespace App\Http\Controllers;
     use App\Models\Post;
+    use Illuminate\Contracts\Foundation\Application;
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\Contracts\View\View;
+    use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
 
-class PostController extends Controller
+    class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function index()
     {
-        $posts = Post::latest()->paginate(5);
+        $posts = Post::latest()->paginate(10);
 
         return view('posts.index',compact('posts'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -22,7 +26,7 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -32,8 +36,8 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -64,7 +68,7 @@ class PostController extends Controller
         $post->update($request->all());
 
         return redirect()->route('posts.index')
-            ->with('success','User updated successfully');
+            ->with('success','Post updated successfully');
     }
 
     public function destroy(Post $post)
@@ -72,7 +76,7 @@ class PostController extends Controller
         $post->delete();
 
         return redirect()->route('post.index')
-            ->with('success','User deleted successfully');
+            ->with('success','Post deleted successfully');
     }
 }
 

@@ -12,6 +12,8 @@
             </div>
 
             </hr>
+            <a href="{{url('/post')}}">Back</a>
 
         </div>
     </div>
+    @endsection
