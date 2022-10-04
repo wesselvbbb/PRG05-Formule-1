@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('title');
             $table->string('content');
+            $table->string('file_path')->nullable();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
         });
     }

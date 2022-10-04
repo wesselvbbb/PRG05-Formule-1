@@ -1,23 +1,15 @@
 @extends('layouts.web')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+@foreach($posts as $post)
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
+    <div class="card" style="width: 18rem; display: inline-block">
+        <img class="card-img-top" src="{{$post->file_path}}" alt="Card image cap">
+        <div class="card-body">
+            <h1>{{$post->title}}</h1>
+            <p class="card-text">{{$post->content}}</p>
+            <a href="{{ url('/post/' . $post->id) }}">Lees meer</a>
         </div>
     </div>
-</div>
+@endforeach
 @endsection

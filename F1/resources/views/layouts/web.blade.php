@@ -13,7 +13,9 @@
 <body>
 @include('layouts.nav')
 @include('partials._header')
-@yield('content')
+<main>
+    @yield('content')
+</main>
 </body>
     @include('layouts.footer')
 </html>

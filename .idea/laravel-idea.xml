@@ -11,7 +11,12 @@
         </option>
       </LaravelCodeGeneration>
     </option>
-    <option name="laravelBasePath" value="F1" />
+    <option name="frameworkFound" value="true" />
+    <option name="translation">
+      <LaravelTranslation>
+        <option name="defaultPath" value="lang" />
+      </LaravelTranslation>
+    </option>
     <option name="userClassName" value="App\Models\User" />
   </component>
 </project>
