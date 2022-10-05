@@ -26,5 +26,15 @@ class HomeController extends Controller
     {
         $posts = DB::select('select * from posts');
         return view('home', ['posts' => $posts]);
+
+//        if (request('search')){
+//            $posts->where('title', 'like', '%' . request('search' . '%'));
+//        }
+//
+//        return view('posts', [
+//            'posts' => $posts->get()
+//        ]);
+
+
     }
 }
