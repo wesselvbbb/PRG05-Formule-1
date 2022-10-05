@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\PostController;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,9 @@ Route::get('about', [AboutController::class, 'show'])->name('about')->middleware
 Auth::routes();
 
 Route::resource('/post', PostController::class);
+
+//Route::get('categories/{category}', function ($id){
+//    return view('posts', [
+//        'posts' => Post::findOrFail($id)
+//        ]);
+//});
