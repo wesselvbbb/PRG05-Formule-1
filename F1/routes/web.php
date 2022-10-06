@@ -29,5 +29,5 @@ Route::resource('/post', PostController::class);
 //Route::get('categories/{category}', function ($id){
 //    return view('posts', [
 //        'posts' => Post::findOrFail($id)
-//        ]);
+//    ]);
 //});

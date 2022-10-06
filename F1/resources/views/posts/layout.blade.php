@@ -7,7 +7,6 @@
 </head>
 <body>
 @include('layouts.nav')
-@include('partials._header')
 <div class="container">
     @yield('content')
 </div>

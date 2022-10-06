@@ -41,12 +41,11 @@
      */
     public function store(Request $request)
     {
-        $input = $request->all();
+        $input = $request->validate(['title' => 'required', 'content' => 'required']);
         Post::create($input);
         return redirect()->route('post.index')
             ->with('success','Post created!');
     }
-
 
     public function show(Post $post)
     {
@@ -61,13 +60,13 @@
     public function update(Request $request, Post $post)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required',
+            'title' => 'required',
+            'content' => 'required'
         ]);
 
         $post->update($request->all());
 
-        return redirect()->route('posts.index')
+        return redirect()->route('post.index')
             ->with('success','Post updated successfully');
     }
 
