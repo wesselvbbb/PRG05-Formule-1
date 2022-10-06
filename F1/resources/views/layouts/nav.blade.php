@@ -8,6 +8,7 @@
             <div class="navbar-nav">
                 <a class="nav-link active" href="{{route('home')}}">Home</a>
                 <a class="nav-link" href="{{route('about')}}">About</a>
+                <a class="nav-link" href="{{route('post.index')}}">Post</a>
                 <ul class="navbar-nav ms-auto">
                     <!-- Authentication Links -->
                     @guest
@@ -44,6 +45,7 @@
                 </ul>
             </div>
         </div>
+    </div>
 </nav>
             </div>
         </div>
