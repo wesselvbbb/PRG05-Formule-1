@@ -15,4 +15,13 @@ class Post extends Model
     public function categories(){
         return $this->hasMany(Category::class);
     }
+
+    public function scopeFilter($query){
+        if (request('search')){
+            if (request('search')){
+                $query->where('title', 'like', '%' . request('search' . '%'))
+                    ->orWhere('content', 'like', '%' . request('search' . '%'));;
+            }
+        }
+    }
 }

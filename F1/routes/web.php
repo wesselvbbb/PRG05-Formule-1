@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\PostController;
 use App\Models\Category;
@@ -25,6 +26,7 @@ Route::get('about', [AboutController::class, 'show'])->name('about')->middleware
 Auth::routes();
 
 Route::resource('/post', PostController::class);
+Route::resource('/categories', CategoryController::class);
 
 //Route::get('categories/{category}', function ($id){
 //    return view('posts', [

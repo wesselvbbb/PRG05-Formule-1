@@ -23,6 +23,10 @@
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
+    public function getPosts(){
+        return Post::latest()->filter()->get();
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -43,6 +47,7 @@
     {
         $input = $request->validate(['title' => 'required', 'content' => 'required']);
         Post::create($input);
+
         return redirect()->route('post.index')
             ->with('success','Post created!');
     }
