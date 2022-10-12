@@ -9,6 +9,7 @@
                 <a class="nav-link active" href="{{route('home')}}">Home</a>
                 <a class="nav-link" href="{{route('about')}}">About</a>
                 <a class="nav-link" href="{{route('post.index')}}">Post</a>
+                <a class="nav-link" href="{{route('categories.index')}}">Categories</a>
                 <ul class="navbar-nav ms-auto">
                     <!-- Authentication Links -->
                     @guest

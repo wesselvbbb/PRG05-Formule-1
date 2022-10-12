@@ -1,6 +1,7 @@
 @extends('layouts.web')
 
 @section('content')
+
 @foreach($posts as $post)
 
     <div class="card" style="width: 18rem; display: inline-block">

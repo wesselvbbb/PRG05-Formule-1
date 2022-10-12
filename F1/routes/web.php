@@ -25,8 +25,8 @@ Route::get('about', [AboutController::class, 'show'])->name('about')->middleware
 
 Auth::routes();
 
-Route::resource('/post', PostController::class);
-Route::resource('/categories', CategoryController::class);
+Route::resource('/post', PostController::class)->middleware('admin');
+Route::resource('/categories', CategoryController::class)->middleware('admin');
 
 //Route::get('categories/{category}', function ($id){
 //    return view('posts', [
