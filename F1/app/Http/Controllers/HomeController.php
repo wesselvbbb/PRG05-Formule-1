@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use DB;
 
@@ -24,15 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = DB::select('select * from posts');
-        return view('home', ['posts' => $posts]);
-
-//        if (request('search')){
-//            $posts->where('title', 'like', '%' . request('search' . '%'));
-//        }
-
-//        return view('posts', [
-//            'posts' => $posts->get()
-//        ]);
+//        $posts = DB::select('select * from posts');
+        return view('home', [
+            'posts' => Post::latest()->filter(request(['search']))->get()
+        ]);
     }
 }
