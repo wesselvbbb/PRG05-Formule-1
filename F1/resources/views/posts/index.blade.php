@@ -22,6 +22,7 @@
                                     <th>Title</th>
                                     <th>Content</th>
                                     <th>File</th>
+                                    <th>Actief</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -31,7 +32,7 @@
                                         <td>{{ $post->title }}</td>
                                         <td>{{ $post->content }}</td>
                                         <td>{{ $post->file_path }}</td>
-
+                                        <td></td>
                                         <td>
                                             <a href="{{ url('/post/' . $post->id) }}" title="View Student"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/post/' . $post->id . '/edit') }}" title="Edit Student"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

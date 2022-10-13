@@ -11,7 +11,7 @@ class Post extends Model
     use HasFactory;
     protected $table = 'posts';
     protected $primaryKey = 'id';
-    protected $fillable = ['title', 'content', 'file_path', ];
+    protected $fillable = ['title', 'content', 'file_path', 'active'];
 
     public function categories(): HasMany
     {
