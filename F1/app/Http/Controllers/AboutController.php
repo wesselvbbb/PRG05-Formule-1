@@ -13,6 +13,6 @@ class AboutController extends Controller
         $title = 'About';
         $text = 'tekst';
 
-        return view('home', compact('title', 'text'));
+        return view('about', compact('title', 'text'));
     }
 }
