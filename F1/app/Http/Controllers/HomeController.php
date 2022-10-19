@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use DB;
@@ -27,7 +28,8 @@ class HomeController extends Controller
     {
 //        $posts = DB::select('select * from posts');
         return view('home', [
-            'posts' => Post::latest()->filter(request(['search']))->get()
+            'posts' => Post::latest()->filter(request(['search', 'category']))->get(),
+            'categories' => Category::all()
         ]);
     }
 }

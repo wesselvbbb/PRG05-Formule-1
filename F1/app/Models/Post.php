@@ -23,5 +23,12 @@ class Post extends Model
         $query
             ->where('title', 'like', '%' . request('search') . '%'))
         ->orWhere('content', 'like', '%' . request('search') . '%');
+
+//        $query->when($filters['category'] ?? false, fn($query, $category) =>
+//        $query
+//            ->whereExists(fn($query)=>
+//                $query->from('categories')
+//                    ->where('categories_id', '')
+//            );
     }
 }
