@@ -48,7 +48,3 @@
         </div>
     </div>
 </nav>
-            </div>
-        </div>
-    </div>
-</nav>

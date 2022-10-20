@@ -21,8 +21,7 @@
                                     <th>#</th>
                                     <th>Title</th>
                                     <th>Content</th>
-                                    <th>File</th>
-                                    <th>Actief</th>
+                                    <th>Active</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -31,7 +30,6 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $post->title }}</td>
                                         <td>{{ $post->content }}</td>
-                                        <td>{{ $post->file_path }}</td>
                                         <td>@if($post->is_active)
                                                 <input type="checkbox" name="is_active" checked>
                                             @else

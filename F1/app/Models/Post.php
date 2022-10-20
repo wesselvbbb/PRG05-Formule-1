@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Post extends Model
 {
@@ -30,11 +29,11 @@ class Post extends Model
             ->where('title', 'like', '%' . request('search') . '%'))
         ->orWhere('content', 'like', '%' . request('search') . '%');
 
-//        $query->when($filters['category'] ?? false, fn($query, $category) =>
-//        $query
-//            ->whereExists(fn($query)=>
-//                $query->from('categories')
-//                    ->where('categories_id', '')
-//            );
+        $query->when($filters['category'] ?? false, fn($query, $category) =>
+        $query
+            ->whereExists(fn($query)=>
+                $query->from('categories')
+                    ->where('categories_id', '')
+            ));
     }
 }

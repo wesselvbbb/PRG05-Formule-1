@@ -20,9 +20,10 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::latest()->paginate(10);
+        $categories = Category::all();
 
 
-        return view('posts.index', compact('posts'))
+        return view('posts.index', compact('posts',  'categories'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -50,16 +51,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-
         $input = $request->validate([
             'title' => 'required',
             'content' => 'required',
             'category_id' => 'required|exists:categories,id',
+            'file_path' => 'nullable|image'
         ]);
 
         $input['user_id'] = auth()->id();
-        Post::create($input);
+        $input['file_path'] = request()->file('file')->store('attachments');
 
+        Post::create($input);
         return redirect()->route('post.index')
             ->with('success', 'Post created!');
     }

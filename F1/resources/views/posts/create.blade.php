@@ -5,7 +5,7 @@
         <div class="card-header">Post Page</div>
         <div class="card-body">
 
-            <form action="{{ route('post.store') }}" method="post">
+            <form action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <label>Title</label></br>
                 <input type="text" name="title" id="title" class="form-control"></br>
