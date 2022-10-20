@@ -11,9 +11,7 @@
                 <p class="card-text" style="color: brown">Category : {{ $post->category->name }}</p>
                 <p class="card-text" style="font-style: italic">Created by : {{ $post->user->name }}</p>
             </div>
-
-            </hr>
-            <a href="{{url('/post')}}">Back</a>
+         <a href="{{url('/')}}">Back</a>
 
         </div>
 @endsection
