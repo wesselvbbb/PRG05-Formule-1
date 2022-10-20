@@ -19,6 +19,15 @@
                 @error('content')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
+                <select name="category_id" id="category_id">
+                    @foreach($categories as $category)
+                        <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
+
+                </select>
+                @error('category_id')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
                 <label>File</label></br>
                 <input type="file" name="file" id="file" value="{{$post->file_path}}" class="form-control"></br>
                 <input type="submit" value="Update" class="btn btn-success"></br>

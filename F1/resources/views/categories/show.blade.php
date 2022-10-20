@@ -6,7 +6,7 @@
 
 
             <div class="card-body">
-                <h5 class="card-title">Title : {{ $category->title }}</h5>
+                <h5 class="card-title">Name : {{ $category->name }}</h5>
             </div>
 
             </hr>

@@ -19,14 +19,14 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Title</th>
+                                    <th>Name</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($categories as $category)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $category->title }}</td>
+                                        <td>{{ $category->name }}</td>
 
                                         <td>
                                             <a href="{{ url('/categories/' . $category->id) }}" title="View Category"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>

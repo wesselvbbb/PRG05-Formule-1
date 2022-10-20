@@ -9,9 +9,9 @@
                 {!! csrf_field() !!}
                 @method("PATCH")
                 <input type="hidden" name="id" id="id" value="{{$category->id}}" id="id" />
-                <label>Title</label></br>
-                <input type="text" name="title" id="title" value="{{$category->title}}" class="form-control"></br>
-                @error('title')
+                <label>Name</label></br>
+                <input type="text" name="name" id="name" value="{{$category->name}}" class="form-control"></br>
+                @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <input type="submit" value="Update" class="btn btn-success"></br>

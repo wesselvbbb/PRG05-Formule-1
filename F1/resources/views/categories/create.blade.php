@@ -8,8 +8,8 @@
             <form action="{{ route('categories.store') }}" method="post">
                 @csrf
                 <label>Title</label></br>
-                <input type="text" name="title" id="title" class="form-control"></br>
-                @error('title')
+                <input type="text" name="name" id="name" class="form-control"></br>
+                @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <input type="submit" value="Save" class="btn btn-success"></br>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Post extends Model
@@ -11,11 +12,16 @@ class Post extends Model
     use HasFactory;
     protected $table = 'posts';
     protected $primaryKey = 'id';
-    protected $fillable = ['title', 'content', 'file_path', 'active'];
+    protected $fillable = ['title', 'content', 'file_path', 'active', 'user_id', 'category_id'];
 
-    public function categories(): HasMany
+    public function category(): BelongsTo
     {
-        return $this->hasMany(Category::class);
+        return $this->belongsTo(Category::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function scopeFilter($query, array $filters){

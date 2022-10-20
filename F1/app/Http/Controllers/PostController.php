@@ -1,14 +1,16 @@
 <?php
 
-    namespace App\Http\Controllers;
-    use App\Models\Post;
-    use Illuminate\Contracts\Foundation\Application;
-    use Illuminate\Contracts\View\Factory;
-    use Illuminate\Contracts\View\View;
-    use Illuminate\Http\RedirectResponse;
-    use Illuminate\Http\Request;
+namespace App\Http\Controllers;
 
-    class PostController extends Controller
+use App\Models\Category;
+use App\Models\Post;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,11 +21,13 @@
     {
         $posts = Post::latest()->paginate(10);
 
-        return view('posts.index',compact('posts'))
+
+        return view('posts.index', compact('posts'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    public function getPosts(){
+    public function getPosts()
+    {
         return Post::latest()->filter()->get();
     }
 
@@ -34,7 +38,8 @@
      */
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::all();
+        return view('posts.create', compact('categories'));
     }
 
     /**
@@ -45,34 +50,43 @@
      */
     public function store(Request $request)
     {
-        $input = $request->validate(['title' => 'required', 'content' => 'required']);
+
+        $input = $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'category_id' => 'required|exists:categories,id',
+        ]);
+
+        $input['user_id'] = auth()->id();
         Post::create($input);
 
         return redirect()->route('post.index')
-            ->with('success','Post created!');
+            ->with('success', 'Post created!');
     }
 
     public function show(Post $post)
     {
-        return view('posts.show',compact('post'));
+        return view('posts.show', compact('post'));
     }
 
     public function edit(Post $post)
     {
-        return view('posts.edit',compact('post'));
+        $categories = Category::all();
+        return view('posts.edit', compact('post', 'categories'));
     }
 
     public function update(Request $request, Post $post)
     {
         $request->validate([
             'title' => 'required',
-            'content' => 'required'
+            'content' => 'required',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         $post->update($request->all());
 
         return redirect()->route('post.index')
-            ->with('success','Post updated successfully');
+            ->with('success', 'Post updated successfully');
     }
 
     public function destroy(Post $post)
@@ -80,7 +94,7 @@
         $post->delete();
 
         return redirect()->route('post.index')
-            ->with('success','Post deleted successfully');
+            ->with('success', 'Post deleted successfully');
     }
 }
 
