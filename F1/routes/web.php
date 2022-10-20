@@ -29,8 +29,8 @@ Route::resource('/post', PostController::class)->middleware('admin');
 Route::resource('/categories', CategoryController::class)->middleware('admin');
 
 
-//Route::get('categories/{category}', function ($id){
-//    return view('posts', [
-//        'posts' => Post::findOrFail($id)
-//    ]);
-//});
+Route::get('categories/{category}', function ($id){
+    return view('posts', [
+        'posts' => Post::findOrFail($id)
+    ]);
+});
