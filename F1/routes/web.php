@@ -29,8 +29,8 @@ Route::resource('/post', PostController::class);
 Route::resource('/categories', CategoryController::class)->middleware('admin');
 
 
-Route::get('categories/{category:name}', function (Category $category){
-    return view('posts.show', [
-        'posts' => $category->posts
-    ]);
-});
+//Route::get('categories/{category:name}', function (Category $category){
+//    return view('posts.show', [
+//        'posts' => $category->posts
+//    ]);
+//});

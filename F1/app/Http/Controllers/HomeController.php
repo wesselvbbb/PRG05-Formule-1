@@ -24,7 +24,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
 //        $posts = DB::select('select * from posts');
         return view('home', [

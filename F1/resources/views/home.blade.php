@@ -2,8 +2,13 @@
 
 @section('content')
 @include('partials._search-form')
-@include('partials._categories-dropdown')
-
+@foreach($categories as $category)
+    <ul>
+        <li>
+            <a href="{{ route('post.index', ['category' => $category->name]) }}">{{ $category->name }}</a>
+        </li>
+    </ul>
+@endforeach
 @foreach($posts as $post)
 
     <div class="card" style="width: 18rem; display: inline-block">
