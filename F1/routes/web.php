@@ -21,16 +21,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('about', [AboutController::class, 'show'])->name('about')->middleware('admin');
+Route::get('about', [AboutController::class, 'show'])->name('about');
 
 Auth::routes();
 
-Route::resource('/post', PostController::class)->middleware('admin');
+Route::resource('/post', PostController::class);
 Route::resource('/categories', CategoryController::class)->middleware('admin');
 
 
-Route::get('categories/{category}', function ($id){
-    return view('posts', [
-        'posts' => Post::findOrFail($id)
+Route::get('categories/{category:name}', function (Category $category){
+    return view('posts.show', [
+        'posts' => $category->posts
     ]);
 });

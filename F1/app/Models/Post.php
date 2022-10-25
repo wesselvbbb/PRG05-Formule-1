@@ -33,7 +33,7 @@ class Post extends Model
         $query
             ->whereExists(fn($query)=>
                 $query->from('categories')
-                    ->where('categories_id', '')
+                    ->where('categories_id', 'posts.category_id')
             ));
     }
 }
