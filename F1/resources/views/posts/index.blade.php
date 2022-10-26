@@ -39,8 +39,8 @@
 {{--                                        <td><input type="checkbox" name="is_active" checked>--}}
 {{--                                            <label for="active"></label></td>--}}
                                         <td>
-                                            <a href="{{ url('/post/' . $post->id) }}" title="View Student"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/post/' . $post->id . '/edit') }}" title="Edit Student"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            <a href="{{ url('/post/' . $post->id) }}" title="View Post"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                            <a href="{{ url('/post/' . $post->id . '/edit') }}" title="Edit Post"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
                                             <form method="POST" action="{{ url('/post' . '/' . $post->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}

@@ -28,9 +28,10 @@ Route::resource('/categories', CategoryController::class)->middleware('admin');
 
 //Route::get('users/{user}', [UserController::class, 'edit']);
 //Route::patch('users/{user}/update', [UserController::class, 'update']);
-Route::get('users/{user}',  ['as' => 'users.edit', 'uses' => 'App\Http\Controllers\UserController@edit']);
-Route::patch('users/{user}/update',  ['as' => 'users.update', 'uses' => 'App\Http\Controllers\UserController@update']);
+//Route::get('users/{user}',  ['as' => 'users.edit', 'uses' => 'App\Http\Controllers\UserController@edit']);
+//Route::patch('users/{user}/update',  ['as' => 'users.update', 'uses' => 'App\Http\Controllers\UserController@update']);
 
+Route::resource('user', UserController::class);
 
 //Route::get('categories/{category:name}', function (Category $category){
 //    return view('posts.show', [

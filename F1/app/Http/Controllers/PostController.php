@@ -19,8 +19,8 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Post::latest()->paginate(10);
-        $categories = Category::all();
+//        $posts = Post::latest()->paginate(10);
+//        $categories = Category::all();
 
         if($request->category){
             $posts = Category::where('name', $request->category)->firstOrFail()->posts()->paginate(3)->withQueryString();
