@@ -2,6 +2,7 @@
 
 @section('content')
 @include('partials._search-form')
+{{--@include('partials._categories-dropdown')--}}
 @foreach($categories as $category)
     <ul>
         <li>

@@ -26,7 +26,6 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-//        $posts = DB::select('select * from posts');
         return view('home', [
             'posts' => Post::latest()->filter(request(['search', 'category']))->get(),
             'categories' => Category::all()

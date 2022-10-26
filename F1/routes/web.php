@@ -2,10 +2,8 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\HelloController;
 use App\Http\Controllers\PostController;
-use App\Models\Category;
-use App\Models\Post;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +25,11 @@ Auth::routes();
 
 Route::resource('/post', PostController::class);
 Route::resource('/categories', CategoryController::class)->middleware('admin');
+
+//Route::get('users/{user}', [UserController::class, 'edit']);
+//Route::patch('users/{user}/update', [UserController::class, 'update']);
+Route::get('users/{user}',  ['as' => 'users.edit', 'uses' => 'App\Http\Controllers\UserController@edit']);
+Route::patch('users/{user}/update',  ['as' => 'users.update', 'uses' => 'App\Http\Controllers\UserController@update']);
 
 
 //Route::get('categories/{category:name}', function (Category $category){
