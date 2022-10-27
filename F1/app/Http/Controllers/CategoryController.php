@@ -4,20 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+
+
 
 class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
         $categories = Category::latest()->paginate(10);
 
-        return view('categories.index', compact('categories'))
+        if (Gate::allows('admin-only', Auth::user())){
+            return view('categories.index', compact('categories'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
+        } else{
+            abort(403);
+        }
     }
 
     /**

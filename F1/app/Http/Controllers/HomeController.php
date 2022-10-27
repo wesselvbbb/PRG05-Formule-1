@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use DB;
 
@@ -30,6 +31,14 @@ class HomeController extends Controller
             'posts' => Post::latest()->filter(request(['search', 'category']))->get(),
             'categories' => Category::all()
         ]);
+    }
+
+    public function private(){
+        if (Gate::allows('admin-only', auth()->user())){
+            return view('posts.index');
+        } else{
+            abort(403);
+        }
     }
 
 

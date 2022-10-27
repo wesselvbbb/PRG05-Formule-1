@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -19,6 +20,7 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
+
 //        $posts = Post::latest()->paginate(10);
 //        $categories = Category::all();
 
