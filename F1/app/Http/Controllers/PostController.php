@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
@@ -103,6 +104,14 @@ class PostController extends Controller
 
         return redirect()->route('post.index')
             ->with('success', 'Post deleted successfully');
+    }
+
+    public function isActive(Request $request){
+        $post = Post::find($request->post_id);
+        $post->is_active = $request->is_active;
+        $post->save();
+
+        return redirect()->route('home');
     }
 }
 

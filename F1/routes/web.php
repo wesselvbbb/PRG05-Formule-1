@@ -24,6 +24,7 @@ Route::get('about', [AboutController::class, 'show'])->name('about');
 Auth::routes();
 
 Route::resource('/post', PostController::class);
+Route::get('/changeActive', [ PostController::class, 'isActive'])->name('changeActive');
 Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
 Route::get('/post/show', [PostController::class, 'show'])->name('post.show');
 Route::resource('/categories', CategoryController::class)->middleware('admin');

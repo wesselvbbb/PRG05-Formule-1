@@ -28,7 +28,8 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         return view('home', [
-            'posts' => Post::latest()->filter(request(['search', 'category']))->get(),
+            'posts' => Post::where('is_active', '1')->filter(request(['search', 'category']))->get(),
+//            'posts' => Post::latest()->filter(request(['search', 'category']))->get(),
             'categories' => Category::all()
         ]);
     }
@@ -36,8 +37,6 @@ class HomeController extends Controller
     public function private(){
         if (Gate::allows('admin-only', auth()->user())){
             return view('posts.index');
-        } else{
-            abort(403);
         }
     }
 

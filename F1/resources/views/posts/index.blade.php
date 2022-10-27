@@ -33,24 +33,37 @@
                                         <td>{{ $post->title }}</td>
                                         <td>{{ $post->content }}</td>
                                         @can('admin-only')
-                                            <td>@if($post->is_active)
-                                                    <input type="checkbox" name="is_active" checked>
-                                                @else
-                                                    <input type="checkbox" name="is_active" >
-                                                @endif
+                                            <td>
+                                                <input data-id="{{$post->id}}" class="toggle-class" type="checkbox"
+                                                       data-onstyle="success"
+                                                       data-offstyle="danger" data-toggle="toggle" data-on="Active"
+                                                       data-off="InActive" {{ $post->is_active ? 'checked' : '' }}>
                                             </td>
                                         @endcan
                                         <td>
-                                            <a href="{{ url('/post/' . $post->id) }}" title="View Post"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                            <a href="{{ url('/post/' . $post->id) }}" title="View Post">
+                                                <button class="btn btn-info btn-sm"><i class="fa fa-eye"
+                                                                                       aria-hidden="true"></i> View
+                                                </button>
+                                            </a>
                                             @can('admin-only')
-                                                <a href="{{ url('/post/' . $post->id . '/edit') }}" title="Edit Post"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                                <a href="{{ url('/post/' . $post->id . '/edit') }}" title="Edit Post">
+                                                    <button class="btn btn-primary btn-sm"><i
+                                                            class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                                                    </button>
+                                                </a>
 
 
-                                            <form method="POST" action="{{ url('/post' . '/' . $post->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                {{ method_field('DELETE') }}
-                                                {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Post" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                                            </form>
+                                                <form method="POST" action="{{ url('/post' . '/' . $post->id) }}"
+                                                      accept-charset="UTF-8" style="display:inline">
+                                                    {{ method_field('DELETE') }}
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                            title="Delete Post"
+                                                            onclick="return confirm(&quot;Confirm delete?&quot;)"><i
+                                                            class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                                                    </button>
+                                                </form>
                                             @endcan
                                         </td>
                                     </tr>
@@ -64,4 +77,26 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $("#posts_table").DataTable()
+        });
+
+        $(function () {
+            $('.toggle-class').change(function () {
+                var is_active = $(this).prop('checked') === true ? 1 : 0;
+                var post_id = $(this).data('id');
+                console.log(status);
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: '/changeActive',
+                    data: {'is_active': is_active, 'post_id': post_id},
+                    success: function (data) {
+                        console.log(data.success)
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
