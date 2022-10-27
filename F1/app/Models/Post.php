@@ -29,11 +29,11 @@ class Post extends Model
             ->where('title', 'like', '%' . request('search') . '%'))
         ->orWhere('content', 'like', '%' . request('search') . '%');
 
-        $query->when($filters['category'] ?? false, fn($query, $category) =>
-        $query
-            ->whereExists(fn($query)=>
-                $query->from('categories')
-                    ->where('categories_id', 'posts.category_id')
-            ));
+//        $query->when($filters['category'] ?? false, fn($query, $category) =>
+//        $query
+//            ->whereExists(fn($query)=>
+//                $query->from('categories')
+//                    ->where('categories_id', 'posts.category_id')
+//            ));
     }
 }

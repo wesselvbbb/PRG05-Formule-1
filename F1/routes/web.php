@@ -30,9 +30,3 @@ Route::get('/post/show', [PostController::class, 'show'])->name('post.show');
 Route::resource('/categories', CategoryController::class)->middleware('admin');
 
 Route::resource('user', UserController::class);
-
-//Route::get('categories/{category:name}', function (Category $category){
-//    return view('posts.show', [
-//        'posts' => $category->posts
-//    ]);
-//});

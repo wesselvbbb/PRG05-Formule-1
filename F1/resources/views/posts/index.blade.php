@@ -36,8 +36,8 @@
                                             <td>
                                                 <input data-id="{{$post->id}}" class="toggle-class" type="checkbox"
                                                        data-onstyle="success"
-                                                       data-offstyle="danger" data-toggle="toggle" data-on="Active"
-                                                       data-off="InActive" {{ $post->is_active ? 'checked' : '' }}>
+                                                       data-offstyle="warning" data-toggle="toggle" data-on="Active"
+                                                       data-off="Inactive" {{ $post->is_active ? 'checked' : '' }}>
                                             </td>
                                         @endcan
                                         <td>
