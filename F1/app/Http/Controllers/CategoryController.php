@@ -23,8 +23,6 @@ class CategoryController extends Controller
         if (Gate::allows('admin-only', Auth::user())){
             return view('categories.index', compact('categories'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
-        } else{
-            abort(403);
         }
     }
 

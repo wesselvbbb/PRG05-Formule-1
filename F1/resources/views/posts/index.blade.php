@@ -21,7 +21,9 @@
                                     <th>#</th>
                                     <th>Title</th>
                                     <th>Content</th>
-                                    <th>Active</th>
+                                    @can('admin-only')
+                                        <th>Active</th>
+                                    @endcan
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -30,23 +32,26 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $post->title }}</td>
                                         <td>{{ $post->content }}</td>
-                                        <td>@if($post->is_active)
-                                                <input type="checkbox" name="is_active" checked>
-                                            @else
-                                                <input type="checkbox" name="is_active" >
-                                            @endif
-                                        </td>
-{{--                                        <td><input type="checkbox" name="is_active" checked>--}}
-{{--                                            <label for="active"></label></td>--}}
+                                        @can('admin-only')
+                                            <td>@if($post->is_active)
+                                                    <input type="checkbox" name="is_active" checked>
+                                                @else
+                                                    <input type="checkbox" name="is_active" >
+                                                @endif
+                                            </td>
+                                        @endcan
                                         <td>
                                             <a href="{{ url('/post/' . $post->id) }}" title="View Post"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/post/' . $post->id . '/edit') }}" title="Edit Post"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            @can('admin-only')
+                                                <a href="{{ url('/post/' . $post->id . '/edit') }}" title="Edit Post"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+
 
                                             <form method="POST" action="{{ url('/post' . '/' . $post->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete Post" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                                             </form>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach
