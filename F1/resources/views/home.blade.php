@@ -16,6 +16,7 @@
             <p style="font-size: smaller; color: brown" >
                 Category: {{ $post->category->name }}
             </p>
+            <p class="card-text" style="font-size: smaller; font-style: italic">Posted: {{$post->created_at}}</p>
             <a href="{{ url('/post/' . $post->id) }}">Read more</a>
         </div>
     </div>

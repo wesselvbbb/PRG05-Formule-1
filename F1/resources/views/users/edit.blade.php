@@ -1,5 +1,4 @@
 @extends('layouts.web')
-
 @section('content')
     <section>
         <div class="card">
@@ -14,7 +13,6 @@
                     <label>E-mail</label>
                     <input type="text" class="form-control" name="email" value="{{old('email', $user->email)}}">
                     <span style="">@error('email'){{ $message }} @enderror</span>
-                    <a href="{{url('password.reset')}}">Reset password</a><br>
                     <button type="submit" name="update" value="Update" class="btn btn-primary btn-sm">Update</button>
                     </a>
                 </form>
@@ -22,5 +20,4 @@
         </div>
         </div>
     </section>
-
 @endsection

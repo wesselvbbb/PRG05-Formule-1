@@ -9,9 +9,8 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
 
-    public function show(User $user)
+    public function show(User $id)
     {
-
         if ($user = Auth::user()) {
             return view('users.show', compact('user'));
         } else {
@@ -22,6 +21,9 @@ class UserController extends Controller
 
     public function edit($id)
     {
+        if ($id != auth()->id()){
+            abort(403);
+        }
         $user = User::find($id);
         return view('users.edit', compact('id', 'user'));
     }

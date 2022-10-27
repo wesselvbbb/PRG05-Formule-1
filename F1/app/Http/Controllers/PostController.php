@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
-use Illuminate\Auth\Access\Gate;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -79,8 +79,13 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        $categories = Category::all();
-        return view('posts.edit', compact('post', 'categories'));
+        if ($post->user_id !== \auth()->id() && !Auth::user()->is_admin == 1){
+            abort(403);
+        }else{
+            $categories = Category::all();
+            return view('posts.edit', compact('post', 'categories'));
+        }
+
     }
 
     public function update(Request $request, Post $post)
