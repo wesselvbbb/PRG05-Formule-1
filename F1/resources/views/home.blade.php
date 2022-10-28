@@ -3,7 +3,9 @@
 @section('content')
 
     <div>
-        @include('partials._search-form')
+        @can('is-validated')
+            @include('partials._search-form')
+        @endcan
         @include('partials._categories-list')
     </div>
     @foreach($posts as $post)
