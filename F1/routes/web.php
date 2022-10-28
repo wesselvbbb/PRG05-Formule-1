@@ -26,5 +26,4 @@ Auth::routes();
 Route::resource('/post', PostController::class);
 Route::get('/changeActive', [ PostController::class, 'isActive'])->name('changeActive');
 Route::resource('/categories', CategoryController::class)->middleware('admin');
-
 Route::resource('user', UserController::class);
