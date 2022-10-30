@@ -20,15 +20,16 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-
-        if ($request->category) {
-            $posts = Category::where('name', $request->category)->firstOrFail()->posts()->paginate(3)->withQueryString();
-        }
-
+        $posts = Post::paginate(5);
         $categories = Category::all();
 
-        return view('home', compact('posts', 'categories'))
-            ->with('i', (request()->input('page', 1) - 1) * 10);
+        if ($request->category) {
+            $posts = Category::where('name', $request->category)->firstOrFail()->posts()->withQueryString();
+            return view('home', compact('posts', 'categories'));
+        }
+
+        return view('posts.index', compact('posts', 'categories'));
+
     }
 
     public function getPosts()
