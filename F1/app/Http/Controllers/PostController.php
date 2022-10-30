@@ -20,16 +20,15 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->category){
+        if ($request->category) {
             $posts = Category::where('name', $request->category)->firstOrFail()->posts()->paginate(3)->withQueryString();
-        }
-        else{
+        } else {
             $posts = Post::latest()->paginate(10);
         }
 
         $categories = Category::all();
 
-        return view('posts.index', compact('posts',  'categories'))
+        return view('posts.index', compact('posts', 'categories'))
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
@@ -68,6 +67,15 @@ class PostController extends Controller
         $input['file_path'] = request()->file('file')->store('attachments');
 
         Post::create($input);
+
+        if (!Auth::user()->is_validated) {
+            if (Auth::user()->posts()->count() >= 2){
+                $user = Auth::user();
+                $user->is_validated = 1;
+                $user->save();
+            }
+        }
+
         return redirect()->route('post.index')
             ->with('success', 'Post created!');
     }
@@ -79,9 +87,9 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        if ($post->user_id !== \auth()->id() && !Auth::user()->is_admin == 1){
+        if ($post->user_id !== \auth()->id() && !Auth::user()->is_admin == 1) {
             abort(403);
-        }else{
+        } else {
             $categories = Category::all();
             return view('posts.edit', compact('post', 'categories'));
         }
@@ -110,7 +118,8 @@ class PostController extends Controller
             ->with('success', 'Post deleted successfully');
     }
 
-    public function isActive(Request $request){
+    public function isActive(Request $request)
+    {
         $post = Post::find($request->post_id);
         $post->is_active = $request->is_active;
         $post->save();
