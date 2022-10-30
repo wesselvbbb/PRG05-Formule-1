@@ -30,7 +30,7 @@
                 <input type="file" name="file" id="file" class="form-control"></br>
                 <input type="submit" value="Save" class="btn btn-success"></br>
             </form>
-            <a href="{{url('/')}}">Back</a>
+            <a href="{{ url()->previous() }}">Back</a>
 
         </div>
     </div>

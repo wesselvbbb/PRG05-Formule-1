@@ -12,12 +12,12 @@ class UserController extends Controller
 
     public function show(User $id)
     {
+        $posts = Post::where('user_id', Auth::user()->id)->get();
         if ($user = Auth::user()) {
-            return view('users.show', compact('user'));
+            return view('users.show', compact('user', 'posts'));
         } else {
             return redirect(route('home'));
         }
-
     }
 
     public function edit($id)
