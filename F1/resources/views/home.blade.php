@@ -1,7 +1,6 @@
 @extends('layouts.web')
 
 @section('content')
-
     <div>
         @can('is-validated')
             @include('partials._search-form')
@@ -19,7 +18,7 @@
                     Category: {{ $post->category->name }}
                 </p>
                 <p class="card-text" style="font-size: smaller; font-style: italic">Posted: {{$post->created_at}}</p>
-                <a href="{{ url('/post/' . $post->id) }}">Read more</a>
+                <a href="{{ url('/post/' . $post->id) }}">Show</a>
             </div>
         </div>
     @endforeach

@@ -68,6 +68,7 @@ class PostController extends Controller
 
         Post::create($input);
 
+
         if (!Auth::user()->is_validated) {
             if (Auth::user()->posts()->count() >= 2){
                 $user = Auth::user();
