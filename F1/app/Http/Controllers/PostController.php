@@ -20,11 +20,11 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Post::paginate(5);
+        $posts = Post::paginate(3);
         $categories = Category::all();
 
         if ($request->category) {
-            $posts = Category::where('name', $request->category)->firstOrFail()->posts()->withQueryString();
+            $posts = Category::where('name', $request->category)->firstOrFail()->posts()->paginate(10)->withQueryString();
             return view('home', compact('posts', 'categories'));
         }
 
@@ -76,7 +76,7 @@ class PostController extends Controller
             }
         }
 
-        return redirect()->route('post.index')
+        return redirect()->route('home')
             ->with('success', 'Post created!');
     }
 

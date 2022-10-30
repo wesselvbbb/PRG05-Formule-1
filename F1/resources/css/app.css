@@ -1,13 +1,14 @@
-body{
+body {
 }
 
-.jumbotron{
+.jumbotron {
     background-color: lightgrey;
     padding: 40px;
     height: 20vh;
     margin-bottom: 20px;
 }
 
-main{
+main {
     padding: 40px;
 }
+
