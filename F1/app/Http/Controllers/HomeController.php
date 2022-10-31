@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
-use App\Models\User;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use DB;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 {
@@ -25,13 +23,14 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Renderable
      */
     public function index(Request $request)
     {
+
         return view('home', [
             'posts' => Post::latest()->filter(request(['search', 'category']))->where('is_active', '1')->get(),
-            'categories' => Category::all()
+            'categories' => Category::orderBy('name')->get()
         ]);
     }
 }
