@@ -20,7 +20,7 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Post::paginate(3);
+        $posts = Post::paginate(5);
         $categories = Category::all();
 
         if ($request->category) {
