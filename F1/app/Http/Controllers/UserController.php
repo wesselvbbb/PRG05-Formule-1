@@ -22,6 +22,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
+        // User can only edit its own profile
         if ($id != auth()->id()){
             abort(403);
         }

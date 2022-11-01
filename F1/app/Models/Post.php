@@ -23,10 +23,12 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
+    // Query to search posts
     public function scopeFilter($query, array $filters){
         $query->when($filters['search'] ?? false, fn($query, $search) =>
         $query
             ->where('title', 'like', '%' . request('search') . '%'))
         ->orWhere('content', 'like', '%' . request('search') . '%');
     }
+
 }

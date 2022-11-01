@@ -34,10 +34,12 @@
                                         <td>{{ $post->content }}</td>
                                         @can('admin-only')
                                             <td>
-                                                <input data-id="{{$post->id}}" class="toggle-class" type="checkbox"
-                                                       data-onstyle="success"
-                                                       data-offstyle="warning" data-toggle="toggle" data-on="Active"
-                                                       data-off="Inactive" {{ $post->is_active ? 'checked' : '' }}>
+                                                <label>
+                                                    <input data-id="{{$post->id}}" class="toggle-class" type="checkbox"
+                                                           data-onstyle="success"
+                                                           data-offstyle="warning" data-toggle="toggle" data-on="Active"
+                                                           data-off="Inactive" {{ $post->is_active ? 'checked' : '' }}>
+                                                </label>
                                             </td>
                                         @endcan
                                         <td>
@@ -86,7 +88,6 @@
             $('.toggle-class').change(function () {
                 var is_active = $(this).prop('checked') === true ? 1 : 0;
                 var post_id = $(this).data('id');
-                console.log(status);
                 $.ajax({
                     type: "GET",
                     dataType: "json",

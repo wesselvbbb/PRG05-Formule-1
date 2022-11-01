@@ -23,6 +23,7 @@ class PostController extends Controller
         $posts = Post::paginate(5);
         $categories = Category::all();
 
+        // Show posts from selected category
         if ($request->category) {
             $posts = Category::where('name', $request->category)->firstOrFail()->posts()->paginate(10)->withQueryString();
             return view('home', compact('posts', 'categories'));
@@ -68,7 +69,8 @@ class PostController extends Controller
 
         Post::create($input);
 
-
+        // Check if user is validated
+        // When user has posted 2 or more times update is_validated to true
         if (!Auth::user()->is_validated) {
             if (Auth::user()->posts()->count() >= 2){
                 $user = Auth::user();
@@ -88,6 +90,8 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
+        // Checks if post belongs to user
+        // And checks if user is admin
         if ($post->user_id !== \auth()->id() && !Auth::user()->is_admin == 1) {
             abort(403);
         } else {
@@ -107,7 +111,7 @@ class PostController extends Controller
 
         $post->update($request->all());
 
-        return redirect()->route('post.index')
+        return redirect()->route('home')
             ->with('success', 'Post updated successfully');
     }
 
@@ -119,6 +123,7 @@ class PostController extends Controller
             ->with('success', 'Post deleted successfully');
     }
 
+    // Change active status for posts
     public function isActive(Request $request)
     {
         $post = Post::find($request->post_id);

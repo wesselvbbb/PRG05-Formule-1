@@ -27,11 +27,14 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        // Admin only gate
         Gate::define('admin-only', function ($user) {
             if ($user->is_admin == 1) {
                 return true;
             }
         });
+
+        // Gate to check if user is validated
         Gate::define('is-validated', function ($user) {
             if ($user->is_validated == 1) {
                 return true;

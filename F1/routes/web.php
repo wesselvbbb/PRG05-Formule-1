@@ -19,11 +19,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('about', [AboutController::class, 'show'])->name('about');
+Route::get('about', [AboutController::class, 'show'])->name('about')->middleware('auth');;
 
 Auth::routes();
 
-Route::resource('/post', PostController::class);
-Route::get('/changeActive', [ PostController::class, 'isActive'])->name('changeActive');
+Route::resource('/post', PostController::class)->middleware('auth');
+Route::get('/changeActive', [ PostController::class, 'isActive'])->name('changeActive')->middleware('auth');;
 Route::resource('/categories', CategoryController::class)->middleware('admin');
-Route::resource('user', UserController::class);
+Route::resource('user', UserController::class)->middleware('auth');;

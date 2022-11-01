@@ -19,6 +19,7 @@ class MustBeAdmin
 
     public function handle(Request $request, Closure $next)
     {
+        // Checks if user is admin, else show Forbidden
         if (!auth()->user()?->is_admin){
             abort(Response::HTTP_FORBIDDEN);
         }
