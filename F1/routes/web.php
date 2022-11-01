@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -27,3 +28,5 @@ Route::resource('/post', PostController::class)->middleware('auth');
 Route::get('/changeActive', [ PostController::class, 'isActive'])->name('changeActive')->middleware('auth');;
 Route::resource('/categories', CategoryController::class)->middleware('admin');
 Route::resource('user', UserController::class)->middleware('auth');;
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin')->middleware('admin');

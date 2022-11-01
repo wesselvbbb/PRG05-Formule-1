@@ -119,7 +119,7 @@ class PostController extends Controller
     {
         $post->delete();
 
-        return redirect()->route('post.index')
+        return redirect()->route('home')
             ->with('success', 'Post deleted successfully');
     }
 

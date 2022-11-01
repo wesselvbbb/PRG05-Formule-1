@@ -9,8 +9,16 @@
                 <a class="nav-link active" href="{{route('home')}}">Home</a>
                 <a class="nav-link" href="{{route('about')}}">About</a>
                 @can('admin-only')
-                    <a class="nav-link" href="{{route('post.index')}}">Post</a>
-                    <a class="nav-link" href="{{route('categories.index')}}">Categories</a>
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            Adminpanel
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('admin') }}">Posts</a>
+                            <a class="dropdown-item" href="{{ route('categories.index') }}">Categories</a>
+                        </div>
+                    </li>
                 @endcan
                 <ul class="navbar-nav ms-auto">
                     <!-- Authentication Links -->
