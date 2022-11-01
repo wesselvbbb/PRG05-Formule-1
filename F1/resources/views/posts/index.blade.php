@@ -4,7 +4,7 @@
         <div class="row">
 
             <div class="col-md-9">
-                <div class="card">
+                <div class="card"  style="width: 60vw;">
                     <div class="card-header">
                         <h2>Posts</h2>
                     </div>
@@ -37,8 +37,8 @@
                                                 <label>
                                                     <input data-id="{{$post->id}}" class="toggle-class" type="checkbox"
                                                            data-onstyle="success"
-                                                           data-offstyle="warning" data-toggle="toggle" data-on="Active"
-                                                           data-off="Inactive" {{ $post->is_active ? 'checked' : '' }}>
+                                                           data-offstyle="warning" data-toggle="toggle" data-on="Show ."
+                                                           data-off="Hide" {{ $post->is_active ? 'checked' : '' }}>
                                                 </label>
                                             </td>
                                         @endcan

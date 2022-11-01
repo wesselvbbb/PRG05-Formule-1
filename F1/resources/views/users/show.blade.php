@@ -12,6 +12,7 @@
         </div>
     </div>
 
+    <h2>My posts</h2>
     @foreach($posts as $post)
 
         <div class="card" style="width: 18rem; display: inline-block">

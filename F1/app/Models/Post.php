@@ -30,5 +30,4 @@ class Post extends Model
             ->where('title', 'like', '%' . request('search') . '%'))
         ->orWhere('content', 'like', '%' . request('search') . '%');
     }
-
 }
